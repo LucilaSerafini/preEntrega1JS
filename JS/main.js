@@ -11,6 +11,10 @@ const juegosDeTablero = ['Kingdomino', 'BurakoRummy', 'TEG', 'Monopoly', 'El Est
 //Mostrar juegos disponibles
 
 function mostrarJuegosDisponibles(tipoDeJuego) {
+    if (tipoDeJuego === null) {
+        alert('Vuelvas prontos');
+        return;
+    }
     switch (tipoDeJuego.toLowerCase()) {
         case 'tablero':
             console.log('Los juegos de tablero disponibles son:');
