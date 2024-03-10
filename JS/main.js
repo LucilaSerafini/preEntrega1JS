@@ -5,50 +5,71 @@ console.log('Bienvenido a la juegoteca Mulán!')
 
 //Array de juegos disponibles
 
-const juegosDeCartas = ['UNO', 'Dables', 'Dígalo con memes', 'Munchkin', 'Catan'];
-const juegosDeTablero = ['Kingdomino', 'BurakoRummy', 'TEG', 'Monopoly', 'El Estanciero'];
+const juegosDisponibles = [
+    {tipo: 'Cartas', nombre: 'UNO', precio: 3000},
+    {tipo: 'Cartas', nombre: 'Dables', precio: 6000},
+    {tipo: 'Cartas', nombre: 'Digalo con memes', precio: 20000},
+    {tipo: 'Cartas', nombre: 'Munchkin', precio: 30000},
+    {tipo: 'Tablero', nombre: 'Kingdomino', precio: 60000},
+    {tipo: 'Tablero', nombre: 'Burako', precio: 20000},
+    {tipo: 'Tablero', nombre: 'TEG', precio: 60000},
+    {tipo: 'Tablero', nombre: 'Monopoly', precio: 80000},
+    {tipo: 'Tablero', nombre: 'Estanciero', precio: 60000},
+    {tipo: 'Tablero', nombre: 'Catan', precio: 60000},
 
-//Mostrar juegos disponibles
+]
 
-function mostrarJuegosDisponibles(tipoDeJuego) {
-    if (tipoDeJuego === null) {
-        alert('Vuelvas prontos');
-        return;
-    }
-    switch (tipoDeJuego.toLowerCase()) {
-        case 'tablero':
-            console.log('Los juegos de tablero disponibles son:');
-            for (let i = 0; i < juegosDeTablero.length; i++) {
-                console.log(i + 1 + '. ' + juegosDeTablero[i]);
-            }
-            break;
-        case 'cartas':
-            console.log('Los juegos de cartas disponibles son:');
-            for (let i = 0; i < juegosDeCartas.length; i++) {
-                console.log(i + 1 + '. ' + juegosDeCartas[i]);
-            }
-            break;
-        default:
-            alert('Lo sentimos, el juego ingresado no es válido. Por favor, vuelva a intentarlo.');
-    }
-}
+
+// Mostrar juegos disponibles
 
 const tipoDeJuego = prompt('¿Qué tipo de juego desea ver? ¿Tablero o cartas?');
-mostrarJuegosDisponibles(tipoDeJuego);
+
+const mostrarJuegosDisponibles = juegosDisponibles.filter ((juego) => juego.tipo.toLowerCase() === tipoDeJuego.toLowerCase());
+
+if (mostrarJuegosDisponibles && mostrarJuegosDisponibles.length >0) {
+    console.log ('Juegos disponibles: ')
+    mostrarJuegosDisponibles.forEach ((juegoDisponible) => console.log (juegoDisponible.nombre));
+
+} else {
+    console.log ('No encontramos resultados para su búsqueda. Vuelva a intentarlo.')
+}
+  
 
 //Selección de juego 
 
-const seleccionDeJuego = prompt('Por favor, indique el juego a adquirir');
+const seleccionDeJuego = prompt ('Por favor, ingrese el producto que desea adquirir.')
 
-if ((seleccionDeJuego >= 1) && (seleccionDeJuego <= juegosDeCartas.length) && (seleccionDeJuego <= juegosDeTablero.length)) {
-    const juegoSeleccionado = seleccionDeJuego;
-
-    const confirmar = confirm('¿Desea agregar al carrito el juego seleccionado: ' + juegoSeleccionado);
-    if (confirmar) {
-        alert('El juego seleccionado n°' + juegoSeleccionado + ' se agregó exitosamente al carrito de compras. ');
-    } else {
-        alert('El juego seleccionado no se ha agregado al carrito');
-    }
-} else {
-    alert('No se detectó ningún ingreso.')
+const juegoExistente = juegosDisponibles.some (juegoDisponible => juegoDisponible.nombre.toLowerCase() === seleccionDeJuego.toLowerCase());
+  if (juegoExistente) {
+      const confirmar = confirm('¿Desea agregar al carrito el juego seleccionado: ' + seleccionDeJuego + '?');
+      if (confirmar) {
+          alert('El juego ' + seleccionDeJuego + ' se agregó exitosamente al carrito de compras. ');
+      } else {
+          alert('El juego seleccionado no se ha agregado al carrito');
+      }
 }
+
+function buscar() {
+    //LEVANTAR EL VALOR DEL INPUT DEL DOM BUSCANDOLO POR SU ID
+
+    const busqueda = document.getElementById ('busqueda');
+    const randomId = Math.floor(Math.random() * 100000) + 1;
+    localStorage.setItem(randomId, busqueda.value);
+
+
+    //1. NO HAY NADA -> MSG INGRESE UN VALOR
+    if (busqueda.value === "") {
+        console.log ('Ingrese un valor');
+    } else {
+        let juegosFiltrados = juegosDisponibles.filter ((juego) => juego.nombre.toLowerCase() === busqueda.value.toLowerCase());
+        if (juegosFiltrados.length > 0) {
+            console.log('Se encontró el juego')
+            juegosFiltrados.forEach ((juegoDisponible) => console.log ("Nombre: ", juegoDisponible.nombre + " - Precio: ", juegoDisponible.precio));
+        } else {
+            console.log('No se encontró el juego');
+        }
+    }
+    //2. EL USUARIO INGRESO UN VALOR Y ENCONTRO COINCIDENCIAS
+    
+    //3. EL USUARIO INGRESO UN VALOR Y NO ENCONTRO
+};
