@@ -22,7 +22,7 @@ const juegosDisponibles = [
 
 // Mostrar juegos disponibles
 
-const tipoDeJuego = prompt('¿Qué tipo de juego desea ver? ¿Tablero o cartas?');
+// const tipoDeJuego = prompt('¿Qué tipo de juego desea ver? ¿Tablero o cartas?');
 
 const mostrarJuegosDisponibles = juegosDisponibles.filter ((juego) => juego.tipo.toLowerCase() === tipoDeJuego.toLowerCase());
 
@@ -37,7 +37,7 @@ if (mostrarJuegosDisponibles && mostrarJuegosDisponibles.length >0) {
 
 //Selección de juego 
 
-const seleccionDeJuego = prompt ('Por favor, ingrese el producto que desea adquirir.')
+// const seleccionDeJuego = prompt ('Por favor, ingrese el producto que desea adquirir.')
 
 const juegoExistente = juegosDisponibles.some (juegoDisponible => juegoDisponible.nombre.toLowerCase() === seleccionDeJuego.toLowerCase());
   if (juegoExistente) {
@@ -50,14 +50,11 @@ const juegoExistente = juegosDisponibles.some (juegoDisponible => juegoDisponibl
 }
 
 function buscar() {
-    //LEVANTAR EL VALOR DEL INPUT DEL DOM BUSCANDOLO POR SU ID
 
     const busqueda = document.getElementById ('busqueda');
     const randomId = Math.floor(Math.random() * 100000) + 1;
     localStorage.setItem(randomId, busqueda.value);
 
-
-    //1. NO HAY NADA -> MSG INGRESE UN VALOR
     if (busqueda.value === "") {
         console.log ('Ingrese un valor');
     } else {
@@ -68,8 +65,5 @@ function buscar() {
         } else {
             console.log('No se encontró el juego');
         }
-    }
-    //2. EL USUARIO INGRESO UN VALOR Y ENCONTRO COINCIDENCIAS
-    
-    //3. EL USUARIO INGRESO UN VALOR Y NO ENCONTRO
+    }   
 };
