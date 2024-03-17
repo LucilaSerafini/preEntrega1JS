@@ -29,16 +29,19 @@ document.addEventListener('DOMContentLoaded', function() {
     // Agregar evento a cada botón de agregar al carrito
     botonesAgregarCarrito.forEach((boton, index) => {
         boton.addEventListener('click', () => {
+            console.log('Index: ', index);
             agregarAlCarrito(index);
-            actualizarProductosCarrito();
-            calcularTotal();
         });
     });
 
     // Función para agregar producto al carrito
     function agregarAlCarrito(index) {
         const producto = productos[index];
-        carrito.push(producto);
+        if (producto) {
+            carrito.push(producto);
+            actualizarProductosCarrito();
+            calcularTotal();
+        }
     }
 
     // Función para actualizar cantidad de productos en el carrito
