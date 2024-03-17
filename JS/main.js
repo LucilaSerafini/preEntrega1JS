@@ -32,13 +32,14 @@ document.addEventListener('DOMContentLoaded', function() {
             const producto = document.getElementById("busqueda");
             const valorProducto = producto.value;
             console.log('Valor: ', valorProducto);
-            agregarAlCarrito(index);
+            agregarAlCarrito(valorProducto);
         });
     });
 
     // Función para agregar producto al carrito
-    function agregarAlCarrito(index) {
-        const producto = productos[index];
+    function agregarAlCarrito(valorProducto) {
+        const producto = productos.filter((producto) => producto.nombre === valorProducto);
+        console.log('Producto', producto);
         if (producto) {
             carrito.push(producto);
             actualizarProductosCarrito();
