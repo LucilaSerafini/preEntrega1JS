@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (localStorage.importe) {
         console.log('Hay importe:', localStorage.importe);
         const importeStorage = document.querySelector('.importe');
-        importeElemento.textContent = localStorage.importe;
+        importeStorage.textContent = localStorage.importe;
     }
     
 
