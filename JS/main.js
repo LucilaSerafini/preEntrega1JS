@@ -29,7 +29,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Agregar evento a cada botón de agregar al carrito
     botonesAgregarCarrito.forEach((boton, index) => {
         boton.addEventListener('click', () => {
-            console.log('Index: ', index);
+            const producto = document.getElementById("busqueda");
+            const valorProducto = producto.value;
+            console.log('Valor: ', valorProducto);
             agregarAlCarrito(index);
         });
     });
