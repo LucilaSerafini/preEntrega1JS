@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (localStorage.cantidad) {
         console.log('Hay cantidad:', localStorage.cantidad);
         const unidadesStorage = document.querySelector('.productos');
-        unidadesStorage.textContent = carrito.length;
+        unidadesStorage.textContent = localStorage.cantidad;
     }
 
     if (localStorage.importe) {
