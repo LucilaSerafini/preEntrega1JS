@@ -36,6 +36,19 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    if (localStorage.cantidad) {
+        console.log('Hay cantidad:', localStorage.cantidad);
+        const unidadesStorage = document.querySelector('.productos');
+        unidadesStorage.textContent = carrito.length;
+    }
+
+    if (localStorage.importe) {
+        console.log('Hay importe:', localStorage.importe);
+        const importeStorage = document.querySelector('.importe');
+        importeElemento.textContent = localStorage.importe;
+    }
+    
+
     // Función para agregar producto al carrito
     function agregarAlCarrito(valorProducto) {
         const productoFiltrado = productos.filter((producto) => producto.nombre === valorProducto);
@@ -51,6 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function actualizarProductosCarrito() {
         const unidadesProductos = document.querySelector('.productos');
         unidadesProductos.textContent = carrito.length;
+        localStorage.setItem('cantidad', carrito.length);
     }
 
     // Función para calcular el total de la compra
@@ -58,5 +72,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const importeTotal = carrito.reduce((total, producto) => total + producto.precio, 0);
         const importeElemento = document.querySelector('.importe');
         importeElemento.textContent = `$${importeTotal.toFixed(2)}`;
+        localStorage.setItem('importe', importeElemento.textContent);
     }
 });
