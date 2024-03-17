@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function agregarAlCarrito(valorProducto) {
         const productoFiltrado = productos.filter((producto) => producto.nombre === valorProducto);
         console.log('Producto filtrado', productoFiltrado);
-        if (productoFiltrado.lenght > 0) {
+        if (productoFiltrado.length > 0) {
             carrito.push(producto[0]);
             actualizarProductosCarrito();
             calcularTotal();
